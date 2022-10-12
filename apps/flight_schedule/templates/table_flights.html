@@ -20,16 +20,17 @@
           </ol>
     </nav>
     <div class="container-fluid">
-        <span>Flight Activities</span>
-        <div class="row">
-          <div class="col">
-            {% render_table table %}
-          </div>
-          <div class="col">
-            {% render_table table %}
-          </div>
+      <div class="row">
+        <div class="col">
+          {% render_table table1 %}
+        </div>
+        <div class="col">
+          {% render_table table2 %}
         </div>
       </div>
+
+    </div>
+
 </html>
 
 {% endblock content %}

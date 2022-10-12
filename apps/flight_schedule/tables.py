@@ -6,7 +6,8 @@ from .models import FlightTask
 class TasksTable(tables.Table):
     
      
-    
+    user = tables.Column(accessor="user")
+    technology = tables.Column(attrs={"tf": {"bgcolor": "red"}})
     selection = tables.CheckBoxColumn(accessor="pk", orderable=False)
     class Meta:
         ATTRIBUTES = {
@@ -18,13 +19,12 @@ class TasksTable(tables.Table):
                 }
             }
         }
+        
         model = FlightTask
         sequence = ('selection', 'task_date',)
         template_name = "django_tables2/bootstrap.html"
         fields = (
-            'user',
             'task_date',
-            'technology',
             'airline',
             'flight',
             'sched_time',
@@ -33,4 +33,5 @@ class TasksTable(tables.Table):
             
         )
         task_date = tables.Column(attrs=ATTRIBUTES) 
+     
  
