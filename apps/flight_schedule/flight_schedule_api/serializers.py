@@ -16,7 +16,6 @@ class TaskSerializer(serializers.ModelSerializer):
             'task_date',
             'technology',
             'airline',
-            'aircraft_type',
             'registration',
             'flight',
             'sched_time',
@@ -25,12 +24,9 @@ class TaskSerializer(serializers.ModelSerializer):
             'description',
             'status',
             'slug',
-            'is_return',
             'create_at',
             'update_at',
-
-
-            )
+        )
         model = FlightTask
 
 

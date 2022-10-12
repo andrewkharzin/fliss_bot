@@ -6,7 +6,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
-from apps.directory.models import Register
+from apps.directory.models import Register, Station
 
 class UUID(models.Model):
     pkid = models.BigAutoField(primary_key=True, editable=False)
@@ -46,16 +46,14 @@ class FlightTask(Abstract):
     task_date = models.DateField(_("Date"), auto_now=False, auto_now_add=False)
     technology = models.CharField(_("Tech"), choices=tech_route, max_length=15, default="")
     airline = models.ForeignKey(Airline, related_name='flight_airline', on_delete=models.PROTECT)
-    aircraft_type = models.CharField(_("Aircraft"), max_length=50, default="")
     registration = models.ForeignKey(Register, related_name='flight_register', on_delete=models.PROTECT)
     flight = models.CharField(_("Flight"), max_length=6, default="")
-    sched_time =models.TimeField(_("SCTA"), auto_now=False, auto_now_add=False, null=True, blank=True)
-    route = models.CharField(_("From"), max_length=10, default="")
-    payload = models.TextField(_("Payload"), default="")
+    sched_time =models.TimeField(_("Schedule time"), auto_now=False, auto_now_add=False, null=True, blank=True)
+    route = models.ForeignKey(Station, related_name='flight_station', on_delete=models.PROTECT)
+    payload = models.CharField(_("Payload(kg)"), max_length=50, default="")
     description = models.TextField(_("Description"), default="")
     status = models.CharField(_("Status"), choices=STATUS, max_length=15, default="draft")
     slug = models.SlugField(unique=True, editable=False)
-    is_return = models.BooleanField(default=False)
     objects = models.Manager()
     postObjects = PostObjects()
  
@@ -72,6 +70,9 @@ class FlightTask(Abstract):
 
     def __str__(self):
         return f"{self.task_date} - {self.technology.upper()} - {self.flight.upper()} "
+    
+    def get_model_fields(register):
+       return register._meta.get_field('ac_type')
 
     def get_absolute_url(self):
         return reverse("FlightTask_detail", kwargs={"pk": self.pk})

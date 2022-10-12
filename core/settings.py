@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "apps.directory",
     "api",
     "corsheaders",
+    "django_tables2",
 ]
 
 MIDDLEWARE = [
@@ -144,6 +145,10 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://8000-andrewkharzin-flissbot-xe8qi86v8om.ws-eu70.gitpod.io"
 ]
 
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']

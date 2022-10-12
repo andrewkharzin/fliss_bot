@@ -1,8 +1,10 @@
 from django.urls import path
 from django.views.generic import TemplateView
+from .views import index, FlightListView
 
 app_name='flight_scheduler'
 
 urlpatterns = [
-    path('flight_schedule/', TemplateView.as_view(template_name="flight_schedule/index.html")),
+    path('', index, name='index'),
+    path('flights/', FlightListView.as_view(), name='flights')
 ]

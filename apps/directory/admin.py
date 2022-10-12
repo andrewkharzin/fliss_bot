@@ -1,6 +1,6 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
-from apps.directory.models import Airline, Register
+from apps.directory.models import Airline, Register, Station
 
 
 @admin.register(Airline)
@@ -39,7 +39,16 @@ class RegisterAdmin(ImportExportModelAdmin):
         'co',
         'mod',
         'g_type',
-        'description'
+        'description',
 
         
+    ]
+@admin.register(Station)
+class StationAdmin(ImportExportModelAdmin):
+    list_display = [
+        
+        'iata',
+        'icao',
+        'rus',
+        'country'
     ]
