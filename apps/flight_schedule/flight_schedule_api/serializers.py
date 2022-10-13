@@ -26,8 +26,12 @@ class TaskSerializer(serializers.ModelSerializer):
             'slug',
             'create_at',
             'update_at',
+            
         )
         model = FlightTask
+        
+        def get_sched_time(self, obj):
+            return obj.create_at.strftime("%d-%m-%Y, %H:%M")
 
 
 class RegisterSerializer(serializers.ModelSerializer):

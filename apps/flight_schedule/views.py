@@ -1,5 +1,6 @@
 from django.template.response import TemplateResponse
 from apps.flight_schedule.models import FlightTask
+from apps.directory.models import Airline
 from django_tables2 import SingleTableView
 from django.shortcuts import render
  
@@ -21,9 +22,11 @@ def flights_listing(request):
 
  
 def index(request):
+    airl = Airline.objects.all()
     ftl = FlightTask.postObjects.all()
     context = {
-        'ftl': ftl
+        'ftl': ftl,
+        'airl': airl
     }
     
     return TemplateResponse(request, 'index.html', context=context)

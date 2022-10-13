@@ -8,6 +8,13 @@ class TasksTable(tables.Table):
      
     user = tables.Column(accessor="user")
     technology = tables.Column(attrs={"tf": {"bgcolor": "red"}})
+    airline = tables.Column(attrs={"tf": {"bgcolor": "red"}})
+    flight = tables.Column()
+    sched_time = tables.Column()
+    registration = tables.Column(attrs={"tf": {"bgcolor": "red"}})
+    route = tables.Column(attrs={"tf": {"bgcolor": "red"}})
+    payload = tables.Column(attrs={"tf": {"bgcolor": "red"}})
+    status = tables.Column(attrs={"tf": {"bgcolor": "red"}})
     selection = tables.CheckBoxColumn(accessor="pk", orderable=False)
     class Meta:
         ATTRIBUTES = {
@@ -25,11 +32,11 @@ class TasksTable(tables.Table):
         template_name = "django_tables2/bootstrap.html"
         fields = (
             'task_date',
-            'airline',
-            'flight',
-            'sched_time',
-            'route',
-            'status',
+            # 'airline',
+            # 'flight',
+            # 'sched_time',
+            # 'route',
+            # 'status',
             
         )
         task_date = tables.Column(attrs=ATTRIBUTES) 
